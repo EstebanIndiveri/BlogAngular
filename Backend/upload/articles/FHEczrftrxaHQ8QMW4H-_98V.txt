@@ -1,0 +1,8 @@
+hotjar
+scroll 
+click
+hover
+-Heatmap
+
+hipmap
+
