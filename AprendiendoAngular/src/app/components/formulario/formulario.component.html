@@ -1,0 +1,47 @@
+<app-slider [nombre]="'Contacto'" [size]="'small'"></app-slider>
+
+<div class="center">
+  <section id="content">
+    <h1 class="subheader">Formulario</h1>
+
+    <form class="mid-form" #userForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" required pattern="[a-zA-Z]+">
+
+        <small *ngIf="!name.valid && name.touched" [ngStyle]="{'color': 'red'}">
+          El nombre no es valido
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Apellidos</label>
+        <input type="text" name="lastname" #lastname="ngModel" [(ngModel)]="user.lastname" required pattern="[a-zA-Z]+">
+        <small *ngIf="!lastname.valid && lastname.touched" [ngStyle]="{'color': 'red'}">
+          El apellido no es valido
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="coment">Comentario</label>
+        <textarea name="coment" cols="30" rows="10" #coment="ngModel" [(ngModel)]="user.coment" required></textarea>
+        <small *ngIf="!coment.valid && coment.touched" [ngStyle]="{'color': 'red'}">
+          El mensaje es necesario
+        </small>
+     
+      </div>
+
+      <div class="radiobuttons">
+        <input type="radio" name="genero" value="hombre" #genero="ngModel" [(ngModel)]="user.genero">Hombre
+        <input type="radio" name="genero" value="mujer" #genero="ngModel" [(ngModel)]="user.genero">Mujer
+        <input type="radio" name="genero" value="otro" #genero="ngModel" [(ngModel)]="user.genero">Otro
+      </div>
+      <div class="clearfix"></div>
+      <input type="submit" value="Enviar" class="btn btn success" [disabled]="userForm.invalid">
+
+    </form>
+
+
+  </section>
+  <app-sidebar></app-sidebar>
+</div>

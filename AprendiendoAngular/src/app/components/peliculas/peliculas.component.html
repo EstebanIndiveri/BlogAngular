@@ -1,0 +1,51 @@
+<app-slider [nombre]="'Peliculas'" [size]="'small'"></app-slider>
+
+<div class="center">
+  <section id="content">
+    <div id="favorita" *ngIf="favorita">
+        <h2 class="subheader">
+            Pelicula favorita:
+        </h2>
+            <h4>{{favorita.title}}</h4>
+            <h5>{{favorita.year}}</h5>
+    </div>
+<h1 class="subheader">Peliculas</h1>
+<!-- Ejercicios de angular comentados
+    <h2>{{titulo}}</h2>
+<button (click)="cambiarTitulo()">pulsame</button>
+<br>
+<hr>
+<h3>Mostrar primera pelicula </h3>
+<p>{{peliculas[0].title}}</p>
+
+<h2>Numero de peliculas</h2>
+<div *ngIf="peliculas.length <3">
+Hay pocas peliculas:
+{{peliculas.length}}
+
+</div>
+
+<div *ngIf="peliculas.length <=3">
+    Hay muchas peliculas:
+    {{peliculas.length}}
+    
+    </div>
+
+    <hr> -
+     //Usamos NG IF y NG FOR para recorrer los objetose instanciarlos
+    <h2 class="subheader">Listado de peliculas</h2>-->
+    <div id="articles" *ngIf="peliculas">
+<!-- NG FOR sobre el componente pelicula creado se lo llama y recorre -->
+        <div *ngFor="let pelicula of peliculas">
+            <app-pelicula
+                [pelicula]="pelicula"
+                (MarcarFavorita)="mostrarFavorita($event)"
+            ></app-pelicula
+                >
+        </div>
+        
+    </div>
+    </section>
+    <app-sidebar></app-sidebar>
+  </div>
+  

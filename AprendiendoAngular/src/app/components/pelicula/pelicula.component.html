@@ -1,0 +1,25 @@
+<article class="article-item">
+    <div class="image-wrap">
+        <img src="{{pelicula.image}}" alt="{{pelicula.title}}" />
+    </div>
+
+    <h2>{{pelicula.title | uppercase}}</h2> <!-- PIPE UPPERCASE-->
+    <span class="date">
+        Hace 5 minutos
+    </span>
+   
+    <span [ngStyle]="{'color': 'red'}">
+        {{pelicula.category}}
+    </span>
+    <a href="#">Ver</a>
+    <div id="stars" (click)="seleccionar($event,pelicula)"><i id="star" class="fas fa-star"></i>
+    </div>
+    <span class="year" [ngClass]="{
+                           'year-golden':pelicula.year > 2016,
+                            'year-green':pelicula.year <2016
+                        }">
+
+        {{pelicula.year}}
+    </span>
+    <div class="clearfix"></div>
+</article>
