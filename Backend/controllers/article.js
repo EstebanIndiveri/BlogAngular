@@ -50,7 +50,11 @@ var controller ={
             //Asigna los valores al objeto
             article.title=params.title;
             article.content=params.content;
-            article.image=null;
+            if(params.image){
+                article.image=params.image;
+            }else{
+                article.image=null;
+            }
             //Guarda el articulo
             article.save((err,articleStored)=>{
 
@@ -102,7 +106,7 @@ var controller ={
             }
 
             return res.status(200).send({
-                status:'sucess',
+                /*status:'sucess',*/
                 articles   
             });
         });
@@ -254,20 +258,30 @@ getArticle: (req, res) => {
         }else{
              //Si es valida 
             var articleId=req.params.id;
-            // Buscar el articulo, asigarle el nombre de la imagen y actualizarlo
-            Article.findOneAndUpdate({_id: articleId},{image:file_name},{new:true},(err,articleUpdated)=>{
-                if(err || !articleUpdated){
-                    return res.status(200).send({
-                        status:'error',
-                        message:'Error al guardar la imagen de articulo'
-                    });
-                }
 
+            if(articleId){
+                // Buscar el articulo, asigarle el nombre de la imagen y actualizarlo
+                Article.findOneAndUpdate({_id: articleId},{image:file_name},{new:true},(err,articleUpdated)=>{
+                    if(err || !articleUpdated){
+                        return res.status(200).send({
+                            status:'error',
+                            message:'Error al guardar la imagen de articulo'
+                        });
+                    }
+    
+                    return res.status(200).send({
+                        status:'sucess',
+                        article:articleUpdated
+                    });
+                });
+            }else{
                 return res.status(200).send({
                     status:'sucess',
-                    article:articleUpdated
+                    image:file_name
                 });
-            });
+            }
+            
+           
 
         }
         
